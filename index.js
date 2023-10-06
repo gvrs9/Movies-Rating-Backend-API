@@ -12,18 +12,6 @@ const port = 5000 || process.env.PORT;
 const { swaggerServe, swaggerSetup } = require('./config');
 
 app.use('/api-docs', swaggerServe, swaggerSetup);
-app.use('/api/v1', (req, res) => {
-    // Not needed anymore. Simply redirect to /api-docs
-    /*
-    res.send(`
-        <h1>Welcome to Movies Rating Backend RestAPI</h1>
-        <p>Please visit <a href="http://localhost:5000/api-docs"> /api-docs </a> for API Documentation</p>
-    `);
-    */
-
-    //redirecting to api-docs
-    res.redirect('/api-docs');
-});
 app.use('/api/v1/longest-duration-movies', longestDurationMoviesRouter);
 app.use('/api/v1/new-movie', newMovieRouter);
 app.use('/api/v1/top-rated-movies', topRatedMoviesRouter);

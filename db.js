@@ -23,7 +23,7 @@ const getLongestDurationMovies = () => {
     ORDER BY t.runtimeMinutes DESC
     LIMIT 10;`;
 
-        db.query(query, (error, result, fields) => {
+        db.query(query, (error, result) => {
             if (error) {
                 reject(error);
             } else {

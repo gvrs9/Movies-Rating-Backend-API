@@ -1,1 +1,1 @@
-# Movies-Rating-Backend-API
+# Movies-Rating-Backend-REST-API

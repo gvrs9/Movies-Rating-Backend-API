@@ -18,10 +18,12 @@ db.connect((err) => {
 
 const getLongestDurationMovies = () => {
     return new Promise((resolve, reject) => {
-        let query = `SELECT t.tconst, t.primaryTitle, t.runtimeMinutes, t.genres
-    FROM movies t
-    ORDER BY t.runtimeMinutes DESC
-    LIMIT 10;`;
+        let query = `
+            SELECT t.tconst, t.primaryTitle, t.runtimeMinutes, t.genres
+            FROM movies t
+            ORDER BY t.runtimeMinutes DESC
+            LIMIT 10;
+        `;
 
         db.query(query, (error, result, fields) => {
             if (error) {
@@ -76,11 +78,13 @@ const newMovie = (
 
 const getTopRatedMovies = () => {
     return new Promise((resolve, reject) => {
-        let query = `SELECT m.tconst, m.primaryTitle, m.genres, r.averageRating
-    FROM movies AS m
-    JOIN ratings AS r ON m.tconst = r.tconst
-    WHERE r.averageRating > 6.0
-    ORDER BY r.averageRating DESC`;
+        let query = `
+            SELECT m.tconst, m.primaryTitle, m.genres, r.averageRating
+            FROM movies AS m
+            JOIN ratings AS r ON m.tconst = r.tconst
+            WHERE r.averageRating > 6.0
+            ORDER BY r.averageRating DESC
+        `;
 
         db.query(query, (error, result, fields) => {
             if (error) {
@@ -116,13 +120,15 @@ let genreMoviesWithSubtotals = () => {
 
 const updateRuntimeMinutes = () => {
     return new Promise((resolve, reject) => {
-        let query = `UPDATE movies
-      SET runtimeMinutes = 
-        CASE
-          WHEN genres = 'Documentary' THEN runtimeMinutes + 15
-          WHEN genres = 'Animation' THEN runtimeMinutes + 30
-          ELSE runtimeMinutes + 45
-        END`;
+        let query = `
+        UPDATE movies
+            SET runtimeMinutes = 
+                CASE
+                    WHEN genres = 'Documentary' THEN runtimeMinutes + 15
+                    WHEN genres = 'Animation' THEN runtimeMinutes + 30
+                    ELSE runtimeMinutes + 45
+                END
+        `;
 
         db.query(query, (error, result, fields) => {
             if (error) {

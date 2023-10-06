@@ -15,6 +15,5 @@ app.use('/api/v1/genre-movies-with-subtotals', genreMoviesWithSubtotalsRouter);
 app.use('/api/v1/update-runtime-minutes', updateRuntimeMinutesRouter);
 
 app.listen(5000, () => {
-  console.log('Server running on port 5000');
+    console.log('Server running on port 5000');
 });
-

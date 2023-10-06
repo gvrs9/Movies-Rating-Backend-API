@@ -8,12 +8,15 @@
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
-  "author": "",
+  "author": "Gvrs Sai Ganesh",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "mysql": "^2.18.1",
-    "nodemon": "^2.0.22"
+    "nodemon": "^3.0.1",
+    "swagger": "^0.0.1",
+    "swagger-ui-express": "^5.0.0",
+    "yamljs": "^0.3.0"
   }
 }

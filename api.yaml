@@ -1,0 +1,105 @@
+openapi: 3.0.3
+info:
+    title: Movie Ratings Backend REST-API
+    description: RESTful API for managing movie data.
+    version: 1.0.0
+servers:
+    - url: http://localhost:5000/api/v1/
+      description: Local development server
+paths:
+    /longest-duration-movies:
+        get:
+            summary: Get Longest Duration Movies
+            description: Retrieve a list of the top 10 movies with the longest duration.
+            responses:
+                '200':
+                    description: Successful response
+                    content:
+                        application/json:
+                            example:
+                                - tconst: tt1234567
+                                  primaryTitle: Movie Title
+                                  runtimeMinutes: 180
+                                  genres: Action, Adventure
+                                # More movie objects...
+    /new-movie:
+        post:
+            summary: Add New Movie
+            description: Add a new movie to the database.
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                tconst:
+                                    type: string
+                                titleType:
+                                    type: string
+                                primaryTitle:
+                                    type: string
+                                runtimeMinutes:
+                                    type: integer
+                                genres:
+                                    type: string
+                                averageRating:
+                                    type: number
+                                numVotes:
+                                    type: integer
+                            required:
+                                - tconst
+                                - titleType
+                                - primaryTitle
+                                - runtimeMinutes
+                                - genres
+                                - averageRating
+                                - numVotes
+            responses:
+                '200':
+                    description: Movie added successfully
+    /top-rated-movies:
+        get:
+            summary: Get Top Rated Movies
+            description: Retrieve a list of top-rated movies with an average rating above 6.0.
+            responses:
+                '200':
+                    description: Successful response
+                    content:
+                        application/json:
+                            example:
+                                - tconst: tt2345678
+                                  primaryTitle: Top Rated Movie
+                                  genres: Drama, Mystery
+                                  averageRating: 8.2
+                                # More movie objects...
+    /genre-movies-with-subtotals:
+        get:
+            summary: Genre Movies With Subtotals
+            description: Retrieve a summary of movies grouped by genres with subtotals.
+            responses:
+                '200':
+                    description: Successful response
+                    content:
+                        application/json:
+                            example:
+                                - genres: Action
+                                  primaryTitle: ''
+                                  totalVotes: 5000
+                                - genres: Comedy
+                                  primaryTitle: TOTAL
+                                  totalVotes: 7000
+                                # More genre subtotals...
+    /update-runtime-minutes:
+        post:
+            summary: Update Runtime Minutes
+            description: Update the runtime minutes of movies based on their genres.
+            responses:
+                '200':
+                    description: Runtime minutes updated successfully
+components:
+    securitySchemes:
+        bearerAuth:
+            type: http
+            scheme: bearer
+            bearerFormat: JWT

@@ -1,4 +1,5 @@
 const express = require('express');
+const getAllTypesRouter = require('./routes/getAllTypes');
 const longestDurationMoviesRouter = require('./routes/longestDurationMovies');
 const newMovieRouter = require('./routes/newMovie');
 const topRatedMoviesRouter = require('./routes/topRatedMovies');
@@ -12,6 +13,7 @@ const port = 5000 || process.env.PORT;
 const { swaggerServe, swaggerSetup } = require('./config');
 
 app.use('/api-docs', swaggerServe, swaggerSetup);
+app.use('/api/v1/get-all-types', getAllTypesRouter);
 app.use('/api/v1/longest-duration-movies', longestDurationMoviesRouter);
 app.use('/api/v1/new-movie', newMovieRouter);
 app.use('/api/v1/top-rated-movies', topRatedMoviesRouter);

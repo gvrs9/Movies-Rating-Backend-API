@@ -7,6 +7,22 @@ servers:
     - url: http://localhost:5000/api/v1/
       description: Local development server
 paths:
+    /get-all-types:
+        get:
+            summary: Get All The Movies, Short Films.
+            description: Retrieve an entire list of the movies and short films.
+            responses:
+                '200':
+                    description: Successful response
+                    content:
+                        application/json:
+                            example:
+                                - tconst: tt1234567
+                                  titleType: movie or short
+                                  primaryTitle: Movie Title
+                                  runtimeMinutes: 180
+                                  genres: Action, Adventure, etc.
+                                # More movie objects...
     /longest-duration-movies:
         get:
             summary: Get Longest Duration Movies

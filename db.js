@@ -16,6 +16,20 @@ db.connect((err) => {
     console.log('Database connected successfully');
 });
 
+const getAllTypes = () => {
+    return new Promise((resolve, reject) => {
+        let query = `SELECT * FROM movies;`;
+
+        db.query(query, (error, result, fields) => {
+            if (error) {
+                reject(error);
+            }else {
+                resolve(result);
+            }
+        });
+    });
+};
+
 const getLongestDurationMovies = () => {
     return new Promise((resolve, reject) => {
         let query = `
@@ -141,6 +155,7 @@ const updateRuntimeMinutes = () => {
 };
 
 module.exports = {
+    getAllTypes,
     getLongestDurationMovies,
     newMovie,
     getTopRatedMovies,

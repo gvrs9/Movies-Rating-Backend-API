@@ -6,7 +6,13 @@ const db = mysql.createConnection({
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    port: process.env.DB_PORT
+    port: process.env.DB_PORT,
+
+    // Use this ssl part only when using tiDB deployed DB. Else comment this part!!
+    ssl: {
+        minVersion: 'TLSv1.2',
+        rejectUnauthorized: true
+    }
 });
 
 db.connect((err) => {
@@ -24,7 +30,7 @@ const getAllTypes = () => {
         db.query(query, (error, result, fields) => {
             if (error) {
                 reject(error);
-            }else {
+            } else {
                 resolve(result);
             }
         });
